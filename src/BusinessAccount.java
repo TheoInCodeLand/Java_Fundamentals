@@ -1,6 +1,5 @@
 public class BusinessAccount extends Account implements Printable{
 
-    double transactionFee = 10;
 
     public BusinessAccount(String ownerName, double balance){
         super(ownerName, balance);
@@ -23,7 +22,7 @@ public class BusinessAccount extends Account implements Printable{
 
             transactionLogs.add("Cash Withdrawal:    - R" + amount + ".");
 
-            transactionLogs.add("Withdrawal fee:     - R" + transactionFee + ".");
+            transactionLogs.add("Withdrawal fee:     - R" + withdrawalFee + ".");
 
             return true;
         } else {
@@ -35,11 +34,12 @@ public class BusinessAccount extends Account implements Printable{
     }
 
     public void deposit(double amount){
-        double totalTransaction = amount + this.transactionFee;
+        double withdrawalFee = amount * 0.02;
         if(amount <= 0){
             throw new IllegalArgumentException("Deposit Failed. Invalid Amount.");
         }
-        this.balance += totalTransaction;
+        this.balance += amount;
+        this.balance -= withdrawalFee;
         System.out.println(
                 "Transaction completed successfully. An amount of R" + amount +
                         " has been deposited into your business account. Current available balance: R" +
@@ -48,7 +48,7 @@ public class BusinessAccount extends Account implements Printable{
 
         transactionLogs.add("Cash Deposit      R" + amount + ".");
 
-        transactionLogs.add("Deposit fee     - R" + transactionFee + ".");
+        transactionLogs.add("Deposit fee     - R" + withdrawalFee + ".");
 
     }
 
