@@ -3,12 +3,23 @@
 import java.util.*;
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Account> accounts = new ArrayList<Account>();
-        accounts.add(new BusinessAccount("Theophilus Thobejane", 985000.55));
-        accounts.add(new StudentAccount("Lerato Nkadimeng", 385000.55));
+        HashMap<String, Account> _account = new HashMap<>();
 
-        for (Account currentAccount : accounts){
-            currentAccount.withdraw(200);
+        _account.put("1851000601", new StudentAccount("Siyabonga Nkosimphile Mashimane", 30200));
+        _account.put("1851000605", new BusinessAccount("Tshepho Mageba Mnguni", 50200));
+        _account.put("1851000609", new StudentAccount("Siphosethu Bongani Skhosana", 30800));
+
+        System.out.println("**********************Capitec_ATM************************");
+
+        // Print Account statement
+        for( Account account : _account.values()){
+            try {
+                account.withdraw(200);
+
+            } catch (Exception e){
+                System.out.println("Transaction failed: " + e.getMessage());
+            }
+            account.printStatement();
         }
     }
 }
