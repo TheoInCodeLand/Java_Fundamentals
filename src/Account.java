@@ -1,24 +1,22 @@
+import java.util.ArrayList;
+
 public abstract class Account implements Printable {
-    private String ownerName;
+    public final String ownerName;
     protected double balance;
+    protected ArrayList<String> transactionLogs = new ArrayList<>();
 
     public Account(String ownerName, double balance){
         this.ownerName = ownerName;
         this.balance = balance;
     }
-    public void deposit(double amount){
-        this.balance += amount;
-        System.out.println("Transaction completed successfully. An amount of R" + amount + " has been credited to your account. Current available balance: R" + this.balance + ".");
-    };
-
-    public String getOwnerName(String ownerName){
-        this.ownerName = ownerName;
-        return this.ownerName;
-    }
+    abstract void deposit(double amount);
 
     abstract boolean withdraw(double amount);
 
     public void printStatement(){
-        System.out.println("Statement successfully printed!");
+        for(String log : transactionLogs){
+            System.out.println(log);
+        }
+        System.out.println("\n================End of statement=================\nAvailable Balance: R" + this.balance + "\n===================================\n");
     }
 }
