@@ -39,21 +39,17 @@ public class BusinessAccount extends Account implements Printable{
         if(amount <= 0){
             throw new IllegalArgumentException("Deposit Failed. Invalid Amount.");
         }
-        if(totalTransaction <= this.balance){
-            this.balance += totalTransaction;
-            System.out.println(
-                    "Transaction completed successfully. An amount of R" + amount +
-                            " has been deposited into your business account. Current available balance: R" +
-                            this.balance + "."
-            );
+        this.balance += totalTransaction;
+        System.out.println(
+                "Transaction completed successfully. An amount of R" + amount +
+                        " has been deposited into your business account. Current available balance: R" +
+                        this.balance + "."
+        );
 
-            transactionLogs.add("Cash Deposit      R" + amount + ".");
+        transactionLogs.add("Cash Deposit      R" + amount + ".");
 
-            transactionLogs.add("Deposit fee     - R" + transactionFee + ".");
+        transactionLogs.add("Deposit fee     - R" + transactionFee + ".");
 
-        } else {
-            System.out.println("Transaction declined.");
-        }
     }
 
 }
