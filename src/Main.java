@@ -10,8 +10,5 @@ public class Main {
         for (Account currentAccount : accounts){
             currentAccount.withdraw(200);
         }
-
-        /*Account student = new StudentAccount("Lerato Nkadimeng", 385000.55);
-        student.withdraw(200);*/
     }
 }
